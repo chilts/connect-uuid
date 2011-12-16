@@ -1,0 +1,34 @@
+{
+    "name" : "connect-uuid",
+    "description" : "Connect middleware to assign a UUID to every request.",
+    "version" : "0.1.0",
+    "author" : {
+        "name" : "Andrew Chilton",
+        "email" : "chilts@appsattic.com",
+        "url" : "http://www.chilts.org/"
+    },
+    "homepage" : "https://github.com/appsattic/connect-uuid",
+    "main" : "./connect-uuid.js",
+    "dependencies" : {
+        "uuid-js" : ">= 0.7.4"
+    },
+    "devDependencies" : {},
+    "repository": {
+        "type" : "git",
+        "url": "git://github.com/appsattic/connect-uuid.git"
+    },
+   "bugs" : {
+        "url" : "http://github.com/appsattic/connect-uuid/issues",
+        "mail" : "chilts@appsattic.com"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://github.com/appsattic/connect-uuid/raw/master/LICENSE"
+    }],
+    "keywords": [
+        "connect", "express", "middleware", "uuid"
+    ],
+    "scripts" : {
+        "test" : "tap test/"
+    }
+}
