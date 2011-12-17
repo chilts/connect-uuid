@@ -16,13 +16,13 @@ Connect middleware which assigns a UUID to every request.
 
     $ npm install connect-uuid
 
-    # require connect-uuid
+    // load connect-uuid
     var uuid = require('connect-uuid');
 
-    # use the middleware which sets req.uuid
+    // use the middleware which sets req.uuid
     app.use(uuid());
 
-    # add a dynamic helper so the view can see #{uuid}
+    // add a dynamic helper so the view can see #{uuid}
     app.dynamicHelpers({
       uuid: function(req, res) {
         return req.uuid;
@@ -33,7 +33,7 @@ Connect middleware which assigns a UUID to every request.
 
 Log the UUID in your log files to help you figure out what is going on:
 
-    # in your logging
+    // in your logging
     myLogger(req.uuid + ' : Something bad happened.');
 
 Tell the user the UUID for the failed request, and get them to use it as a reference when they report the issue to you
@@ -43,11 +43,15 @@ Tell the user the UUID for the failed request, and get them to use it as a refer
 
 Send yourself the uuid of the (failied) requests so you can find it quicker:
 
+    To: me@example.com
+    From: noreply@example.com
+    Subject: 50x error
+    
     A web request (94a56740-539c-4f66-99dd-99bf80b0d5e7) failed.
 
 You may even store the requests and/or errors in your database:
 
-    SELECT * FROM request WHERE uuid = 'b2bc553a-108e-4e71-8d01-9152ffaf0f5c';
+    sql> SELECT * FROM request WHERE uuid = 'b2bc553a-108e-4e71-8d01-9152ffaf0f5c';
 
 And there are many other uses too.
 
@@ -63,6 +67,11 @@ they can tell you to sort things out.
 
 By doing all this, you can easily find the request and what really happened to it. You may keep detailed or light logs,
 but either way having a direct reference to the request will really help.
+
+## Note ##
+
+This module was inspired by this email by Matt Sargeant to the NodeJS mailing list:
+https://groups.google.com/d/msg/nodejs/2NcBM7eXD94/FVm-jL91cekJ
 
 # Author #
 
