@@ -32,6 +32,6 @@
         "connect", "express", "middleware", "uuid"
     ],
     "scripts" : {
-        "test" : "tap test/"
+        "test" : "./node_modules/.bin/tap test/"
     }
 }
