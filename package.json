@@ -15,7 +15,6 @@
     "dependencies" : {
         "uuid-js" : ">= 0.7.4"
     },
-    "devDependencies" : {},
     "repository": {
         "type" : "git",
         "url": "git://github.com/appsattic/connect-uuid.git"
