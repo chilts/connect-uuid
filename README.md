@@ -16,12 +16,40 @@ Connect middleware which assigns a UUID to every request.
 
     $ npm install connect-uuid
 
+    # require connect-uuid
     var uuid = require('connect-uuid');
-    uuid(); // returns middleware which sets req.uuid
 
-In some other code:
+    # use the middleware which sets req.uuid
+    app.use(uuid());
 
-    logMe(req.uuid, 'Something bad happened');
+    # add a dynamic helper so the view can see #{uuid}
+    app.dynamicHelpers({
+      uuid: function(req, res) {
+        return req.uuid;
+      },
+    });
+
+## Uses of a UUID for each Request ##
+
+Log the UUID in your log files to help you figure out what is going on:
+
+    # in your logging
+    myLogger(req.uuid + ' : Something bad happened.');
+
+Tell the user the UUID for the failed request, and get them to use it as a reference when they report the issue to you
+(note: this is a Jade template):
+
+    p Your reference is '#{uuid}'.
+
+Send yourself the uuid of the (failied) requests so you can find it quicker:
+
+    A web request (94a56740-539c-4f66-99dd-99bf80b0d5e7) failed.
+
+You may even store the requests and/or errors in your database:
+
+    SELECT * FROM request WHERE uuid = 'b2bc553a-108e-4e71-8d01-9152ffaf0f5c';
+
+And there are many other uses too.
 
 # Motivation #
 
@@ -33,16 +61,8 @@ with it. When you get an error in your application, make sure you use the UUID w
 logged, email or whatever). Also, tell the user (in their 50x page) what the UUID is when something goes wrong, so that
 they can tell you to sort things out.
 
-By doing all this, you can easily find the request and what really happened to it. You maye keep detailed or slight
-logs, but either way will really help.
-
-Then you can grep or even select from your logs for that UUID!
-
-For example, when using winston-simpledb, you might be able to select those logs with:
-
-    SELECT * FROM logs WHERE uuid = 'xxxxxxxx-xxxx-xxxx--xxxx-xxxxxxxxxxxx';
-
-:)
+By doing all this, you can easily find the request and what really happened to it. You may keep detailed or light logs,
+but either way having a direct reference to the request will really help.
 
 # Author #
 
